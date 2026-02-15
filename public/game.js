@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { RefreshCw, Users, Copy, Check, Trophy, Heart } from 'lucide-react';
+// Hebrew Vocabulary Game - Browser Version
+// No imports needed - React is loaded globally from index.html
+
+const { useState, useEffect } = React;
 
 const HebrewVocabGame = () => {
   const words = [
@@ -456,7 +458,7 @@ const HebrewVocabGame = () => {
                     onClick={copyRoomCode}
                     className="p-2 sm:p-3 bg-white rounded-xl hover:bg-gray-50 transition-colors"
                   >
-                    {copiedCode ? <Check className="text-green-500" size={24} /> : <Copy className="text-purple-600" size={24} />}
+                    {copiedCode ? React.createElement(Check, { className: "text-green-500", size: 24 }) : React.createElement(Copy, { className: "text-purple-600", size: 24 })}
                   </button>
                 </div>
                 <div className="text-xs sm:text-sm text-gray-500 mt-2">Share this code with friends!</div>
@@ -465,7 +467,7 @@ const HebrewVocabGame = () => {
 
             <div className="space-y-3">
               <h3 className="text-lg sm:text-xl font-bold text-gray-700 flex items-center gap-2">
-                <Users size={24} />
+                {React.createElement(Users, { size: 24 })}
                 Players ({gameState.players.length})
               </h3>
               {gameState.players.map((player, idx) => (
@@ -553,11 +555,11 @@ const HebrewVocabGame = () => {
               <div className="text-sm sm:text-base text-gray-600">
                 <div className="flex gap-1">
                   {[...Array(gameState.maxTries)].map((_, i) => (
-                    <Heart
-                      key={i}
-                      size={16}
-                      className={i < myState.triesLeft ? 'fill-red-500 text-red-500' : 'text-gray-300'}
-                    />
+                    React.createElement(Heart, {
+                      key: i,
+                      size: 16,
+                      className: i < myState.triesLeft ? 'fill-red-500 text-red-500' : 'text-gray-300'
+                    })
                   ))}
                 </div>
               </div>
@@ -625,7 +627,7 @@ const HebrewVocabGame = () => {
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-700 mb-4 flex items-center gap-2">
-                  <Trophy size={24} />
+                  {React.createElement(Trophy, { size: 24 })}
                   Players
                 </h3>
                 <div className="space-y-3">
@@ -713,7 +715,7 @@ const HebrewVocabGame = () => {
             onClick={resetGame}
             className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-bold hover:scale-105 transition-transform flex items-center justify-center gap-2 mx-auto"
           >
-            <RefreshCw size={24} />
+            {React.createElement(RefreshCw, { size: 24 })}
             New Game
           </button>
         </div>
@@ -726,4 +728,4 @@ const HebrewVocabGame = () => {
 
 // Render the app
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<HebrewVocabGame />);
+root.render(React.createElement(HebrewVocabGame));
